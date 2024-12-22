@@ -1,0 +1,4 @@
+<h1>Dashboard</h1>
+{% for entry in entries %}
+    <p>{{ entry.date }}: {{ entry.text|truncatechars:50 }}</p>
+{% endfor %}
