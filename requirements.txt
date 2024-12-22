@@ -1,0 +1,1 @@
+Django>=4.2  # Or specify a specific version if needed
