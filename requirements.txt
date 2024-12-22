@@ -1,1 +1,3 @@
 Django>=4.2  # Or specify a specific version if needed
+dj-database-url
+python-dotenv
