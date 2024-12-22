@@ -7,3 +7,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'journal',
 ]
+
+DEBUG = True
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
