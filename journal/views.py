@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Entry
-from .forms import EntryForm, EntryUpdateForm, EntryDeleteForm
+from .forms import EntryForm, EntryUpdateForm, EntryDeleteForm, SignUpForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 from langchain_google_genai import GoogleGenerativeAI
 from langchain import PromptTemplate
 import os
@@ -93,6 +94,29 @@ def delete_entry(request, entry_id):
     else:
         form = EntryDeleteForm(instance=entry)
     return render(request, 'journal/delete_entry.html', {'form': form, 'entry': entry})
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            gender = form.cleaned_data['gender']
+
+            user = User.objects.create_user(username=username, password=password)
+            # Optionally, add gender to the User model (requires migration)
+            # user.gender = gender  # Assuming you've added a gender field to the User model
+            # user.save()
+
+            login(request, user)
+            messages.success(request, "Signup successful!")
+            return redirect('dashboard')  # Redirect to your dashboard
+        else:
+            messages.error(request, "Signup failed. Please check the form.")
+    else:
+        form = SignUpForm()
+    return render(request, 'journal/signup.html', {'form': form})
+
 
 def logout_view(request):
     logout(request)
