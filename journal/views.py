@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Entry
 from .forms import EntryForm, EntryUpdateForm, EntryDeleteForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 
 @login_required
@@ -51,3 +51,7 @@ def delete_entry(request, entry_id):
     else:
         form = EntryDeleteForm(instance=entry)
     return render(request, 'journal/delete_entry.html', {'form': form, 'entry': entry})
+
+def logout_view(request):
+    logout(request)
+    return redirect('dashboard') # Redirect to the dashboard after logout
