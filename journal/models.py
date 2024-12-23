@@ -10,8 +10,6 @@ class Entry(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     intention = models.TextField(null=True, blank=True)
-    remembered_activity = models.TextField(null=True, blank=True)
-    emotions = models.TextField(null=True, blank=True)
     persons = models.TextField(null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
