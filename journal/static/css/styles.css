@@ -122,8 +122,8 @@ hr {
 }
 
 .signup-form label {
-    text-align: left; /* Align labels to the left */
-    display: block; /* Ensure labels are on their own line */
+    text-align: left;
+    display: block;
     margin-bottom: 5px;
 }
 
@@ -137,6 +137,42 @@ hr {
     border: 1px solid #ccc;
     border-radius: 3px;
     box-sizing: border-box;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+form input[type="text"],
+form input[type="password"],
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.signup-form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
 .signup-form button {
@@ -154,8 +190,6 @@ hr {
 
 .signin-form label {
     text-align: left;
-    display: block;
-    margin-bottom: 5px;
     display: block;
     margin-bottom: 5px;
 }
