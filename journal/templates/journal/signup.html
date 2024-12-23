@@ -12,19 +12,36 @@
                             {{ form.username.label_tag }}
                             {{ form.username }}
                             <small class="text-muted">{{ form.username.help_text }}</small>
+                            {% for error in form.username.errors %}
+                                <p class="error">{{ error }}</p>
+                            {% endfor %}
                         </div>
                         <div class="mb-3">
                             {{ form.password.label_tag }}
                             {{ form.password }}
+                            {% for error in form.password.errors %}
+                                <p class="error">{{ error }}</p>
+                            {% endfor %}
                         </div>
                         <div class="mb-3">
                             {{ form.password_confirmation.label_tag }}
                             {{ form.password_confirmation }}
+                             {% for error in form.password_confirmation.errors %}
+                                <p class="error">{{ error }}</p>
+                            {% endfor %}
                         </div>
                         <div class="mb-3">
                             {{ form.gender.label_tag }}
                             {{ form.gender }}
+                            {% for error in form.gender.errors %}
+                                <p class="error">{{ error }}</p>
+                            {% endfor %}
                         </div>
+                        {% if form.non_field_errors %}
+                            {% for error in form.non_field_errors %}
+                                <p class="error">{{ error }}</p>
+                            {% endfor %}
+                        {% endif %}
                         <button type="submit">Sign Up</button>
                     </form>
                 </div>
