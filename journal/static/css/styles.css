@@ -129,7 +129,8 @@ hr {
 
 .signup-form input[type="text"],
 .signup-form input[type="password"],
-.signup-form select {
+.signup-form select,
+.signup-form textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
