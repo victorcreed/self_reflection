@@ -7,8 +7,8 @@
         <label for="category">Filter by Category:</label>
         <select id="category" name="category">
             <option value="">All</option>
-            {% for category in categories %}
-                <option value="{{ category }}" {% if category == category %}selected{% endif %}>{{ category }}</option>
+            {% for cat in categories %}
+                <option value="{{ cat }}" {% if cat == category %}selected{% endif %}>{{ cat }}</option>
             {% endfor %}
         </select>
         <button type="submit">Filter</button>
