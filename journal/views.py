@@ -5,9 +5,8 @@ from .forms import EntryForm, EntryUpdateForm, EntryDeleteForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from langchain.llms import GoogleGemini
-from langchain_google_genai import GoogleGenerativeAI
-
-from langchain import PromptTemplate
+from langchain.prompts import PromptTemplate
+from langchain.chains import LLMChain
 from dotenv import load_dotenv                                                                                                                                                                                                                                                                                                                                             
 import os
                                                                                                                                                                             
