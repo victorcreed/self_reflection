@@ -8,14 +8,7 @@
                 <div class="signup-form">
                     <form method="post">
                         {% csrf_token %}
-                        <div class="mb-3">
-                            {{ form.username.label_tag }}
-                            {{ form.username }}
-                            <small class="text-muted">{{ form.username.help_text }}</small>
-                        </div>
-                        {{ form.password.as_p }}
-                        {{ form.password_confirmation.as_p }}
-                        {{ form.gender.as_p }}
+                        {{ form.as_p }}
                         <button type="submit">Sign Up</button>
                     </form>
                 </div>
@@ -31,6 +24,20 @@
     </div>
 {% endblock %}
 <style>
+    .signup-form label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .signup-form input[type="text"],
+    .signup-form input[type="password"],
+    .signup-form select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-sizing: border-box;
     .signup-form label {
         display: block;
         margin-bottom: 5px;
