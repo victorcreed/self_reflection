@@ -1,15 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Your Profile</h1>
-    <p>Username: {{ user.username }}</p>
-    <p>Email: {{ user.email }}</p> <br>
-    <a href="{% url 'new_entry' %}">Create New Entry</a><br>
-    <h2>Your Entries</h2>
-    {% for entry in entries %}
-        <p>{{ entry.date }}: {{ entry.text|truncatechars:50 }}</p>
-        <a href="{% url 'edit_entry' entry.id %}">Edit</a> |
-        <a href="{% url 'delete_entry' entry.id %}">Delete</a>
-        <br>
-    {% endfor %}
-    <!-- Add other profile details as needed -->
+    <div class="profile-container">
+        <div class="user-info">
+            <h2>Your Profile</h2>
+            <p>Username: {{ user.username }}</p>
+            <p>Email: {{ user.email }}</p>
+        </div>
+
+        <a href="{% url 'new_entry' %}" class="button">Create New Entry</a>
+
+        <div class="entries-container">
+            <h2>Your Entries</h2>
+            {% for entry in entries %}
+                <div class="entry-card">
+                    <h3>{{ entry.date|date:"F j, Y" }}</h3>
+                    <p>{{ entry.text|truncatechars:100 }}</p>  <!-- Adjust truncatechars -->
+                    <a href="{% url 'edit_entry' entry.id %}" class="button">Edit</a>
+                    <a href="{% url 'delete_entry' entry.id %}" class="button">Delete</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
