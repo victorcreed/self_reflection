@@ -5,6 +5,7 @@ from .forms import EntryForm, EntryUpdateForm, EntryDeleteForm, SignUpForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.contrib.auth.models import User
 from langchain_google_genai import GoogleGenerativeAI
 from langchain import PromptTemplate
 import os
