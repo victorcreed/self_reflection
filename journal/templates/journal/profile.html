@@ -1,24 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="profile-container">
-        <div class="user-info">
-            <h2>Your Profile</h2>
-            <p>Username: {{ user.username }}</p>
-            <p>Email: {{ user.email }}</p>
-        </div>
+    <a href="{% url 'new_entry' %}" class="button">Create New Entry</a>
 
-        <a href="{% url 'new_entry' %}" class="button">Create New Entry</a>
-
-        <div class="entries-container">
-            <h2>Your Entries</h2>
-            {% for entry in entries %}
-                <div class="entry-card">
-                    <h3>{{ entry.date|date:"F j, Y" }}</h3>
-                    <p>{{ entry.text|truncatechars:100 }}</p>  <!-- Adjust truncatechars -->
-                    <a href="{% url 'edit_entry' entry.id %}" class="button">Edit</a>
-                    <a href="{% url 'delete_entry' entry.id %}" class="button">Delete</a>
-                </div>
-            {% endfor %}
-        </div>
+    <div class="entries-container">
+        <h2>Your Entries</h2>
+        {% for entry in entries %}
+            <div class="entry-card">
+                <h3>{{ entry.date|date:"F j, Y" }}</h3>
+                <p>{{ entry.text|truncatechars:100 }}</p>  <!-- Adjust truncatechars -->
+                <a href="{% url 'edit_entry' entry.id %}" class="button">Edit</a>
+                <a href="{% url 'delete_entry' entry.id %}" class="button">Delete</a>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
