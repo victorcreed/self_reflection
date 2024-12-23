@@ -4,6 +4,10 @@ from .models import Entry
 from .forms import EntryForm
 from django.contrib.auth import authenticate, login
 
+@login_required
+def profile(request):
+    return render(request, 'journal/profile.html', {'user': request.user})
+
 def dashboard(request):
     if request.user.is_authenticated:
         entries = Entry.objects.filter(user=request.user)
