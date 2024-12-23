@@ -53,9 +53,9 @@ def new_entry(request):
             prompt = PromptTemplate(template=prompt_template, input_variables=["title", "text"])
             chain = LLMChain(llm=llm, prompt=prompt)
             analysis = chain.run(title=entry.title, text=entry.text)
-
-            print(f"LangChain Analysis: {analysis}") #For now, just print the analysis
-
+ 
+            entry.intention = analysis #Save the analysis to the intention field
+            entry.save()
             return redirect('dashboard')
     else:
         form = EntryForm()
