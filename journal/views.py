@@ -5,8 +5,15 @@ from .forms import EntryForm, EntryUpdateForm, EntryDeleteForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from langchain.llms import GoogleGemini
-from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain
+from langchain_google_genai import GoogleGenerativeAI
+
+from langchain import PromptTemplate
+from dotenv import load_dotenv                                                                                                                                                                                                                                                                                                                                             
+import os
+                                                                                                                                                                            
+load_dotenv()                                                                                                                                                                     
+google_gemini_api_key = os.getenv("GOOGLE_GEMINI_API_KEY")                                                                                                                                
+
 
 @login_required
 def profile(request):
@@ -28,8 +35,7 @@ def new_entry(request):
             entry.user = request.user
             entry.save()
 
-            # LangChain integration
-            llm = GoogleGemini(google_api_key="YOUR_API_KEY", temperature=0)
+            llm = GoogleGenerativeAI(google_api_key=google_gemini_api_key, model="gemini-1.5-flash")
             prompt_template = """Analyze the following journal entry for elements of accountability, awareness, gratitude, humility, tawakul, and identified areas for improvement.
 
 Title: {title}
@@ -43,8 +49,7 @@ Tawakul (patience): Does the entry show a lack of patience (and thus lack of taw
 Improvement: Does the entry identify areas for self-improvement?
 """
             prompt = PromptTemplate(template=prompt_template, input_variables=["title", "text"])
-            chain = LLMChain(llm=llm, prompt=prompt)
-            analysis = chain.run(title=entry.title, text=entry.text)
+            analysis = llm(prompt)
 
             # Handle the analysis (e.g., save to the database, display to the user)
             print(f"LangChain Analysis: {analysis}") #For now, just print the analysis
