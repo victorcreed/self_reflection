@@ -8,7 +8,7 @@
         <select id="category" name="category">
             <option value="">All</option>
             {% for cat in categories %}
-                <option value="{{ cat }}" {% if cat == category %}selected{% endif %}>{{ cat }}</option>
+                <option value="{{ cat }}" {% if cat == request.GET.category %}selected{% endif %}>{{ cat }}</option>
             {% endfor %}
         </select>
         <button type="submit">Filter</button>
