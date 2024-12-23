@@ -1,14 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="entries-container">
-        <h2>Your Entries</h2>
-        {% for entry in entries %}
-            <div class="entry-card">
-                <h3>{{ entry.date|date:"F j, Y" }}</h3>
-                <p>{{ entry.text|truncatechars:100 }}</p>  <!-- Adjust truncatechars -->
-                <a href="{% url 'edit_entry' entry.id %}" class="button">Edit</a>
-                <a href="{% url 'delete_entry' entry.id %}" class="button">Delete</a>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="mt-4">Your Entries</h2>
+                <div class="row">
+                    {% for entry in entries %}
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ entry.date|date:"F j, Y" }}</h5>
+                                    <p class="card-text">{{ entry.text|truncatechars:100 }}</p>
+                                    <a href="{% url 'edit_entry' entry.id %}" class="btn btn-primary">Edit</a>
+                                    <a href="{% url 'delete_entry' entry.id %}" class="btn btn-danger">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
-        {% endfor %}
+        </div>
     </div>
 {% endblock %}
