@@ -22,7 +22,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 @login_required
 def dashboard(request):
     if request.user.is_authenticated:
-        entries = Entry.objects.filter(user=request.user).order_by('-date')
+        entries = Entry.objects.filter(user=request.user).order_by('date')
 
         # Pagination
         paginator = Paginator(entries, 5) # 5 entries per page
