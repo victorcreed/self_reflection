@@ -5,7 +5,7 @@
         <h1>Dashboard</h1>
         {% for entry in entries %}
             <div class="entry-chapter">
-                <h2>Chapter {{ forloop.counter }}: {{ entry.title }}</h2>
+                <h2>{{ forloop.counter }}: {{ entry.title }}</h2>
                 <h3 class="date">{{ entry.date|date:"F j, Y" }}</h3>
                 <div class="entry-text">
                     <p>{{ entry.text|safe }}</p>
