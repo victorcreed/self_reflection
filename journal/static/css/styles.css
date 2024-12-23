@@ -44,16 +44,19 @@ form {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    text-align: center;
+    text-align: left; /* Align form content to the left */
 }
 
 form label {
     display: block;
     margin-bottom: 5px;
+    text-align: left; /* Align labels to the left */
 }
 
 form input[type="text"],
-form input[type="password"] {
+form input[type="password"],
+form select,
+form textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -69,6 +72,7 @@ form button {
     border: none;
     border-radius: 3px;
     cursor: pointer;
+    display: inline-block; /* Make buttons inline-block */
 }
 
 .entry-card p {
@@ -122,9 +126,9 @@ hr {
 }
 
 .signup-form label {
-    text-align: left;
     display: block;
     margin-bottom: 5px;
+    text-align: left;
 }
 
 .signup-form input[type="text"],
@@ -139,32 +143,6 @@ hr {
     box-sizing: border-box;
 }
 
-form label {
-    display: block;
-    margin-bottom: 5px;
-    text-align: left;
-}
-
-form input[type="text"],
-form input[type="password"],
-form select,
-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    box-sizing: border-box;
-}
-
-form button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
 
 .signup-form button {
     background-color: #4CAF50;
@@ -173,15 +151,7 @@ form button {
     border: none;
     border-radius: 3px;
     cursor: pointer;
-}
-
-.signup-form button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
+    display: inline-block; /* Make buttons inline-block */
 }
 
 .signup-form .mb-3 small {
