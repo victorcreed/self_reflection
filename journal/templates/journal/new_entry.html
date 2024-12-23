@@ -8,12 +8,12 @@
                     {% csrf_token %}
                     <div class="mb-3">
                         <label for="title" class="form-label">Title:</label>
-                        {{ form.title.as_widget(attrs={'class': 'form-control', 'required': 'required'}) }}
+                        {{ form.title.as_widget(attrs="class='form-control' required") }}
                         <div class="invalid-feedback">Please enter a title.</div>
                     </div>
                     <div class="mb-3">
                         <label for="text" class="form-label">Text:</label>
-                        {{ form.text.as_widget(attrs={'class': 'form-control', 'rows': '5', 'required': 'required'}) }}
+                        {{ form.text.as_widget(attrs="class='form-control' rows='5' required") }}
                         <div class="invalid-feedback">Please enter some text.</div>
                     </div>
                     <button type="submit" class="btn btn-primary">Save Entry</button>
