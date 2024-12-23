@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 class Entry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200, blank=True)
     date = models.DateField(auto_now_add=True)
     text = models.TextField(blank=True) # Allow blank entries
     intention = models.TextField(blank=True)
@@ -15,6 +16,8 @@ class Entry(models.Model):
     personal_improvement = models.TextField(blank=True)
     gratitude_blessings = models.TextField(blank=True)
     accountability = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
     def __str__(self):
