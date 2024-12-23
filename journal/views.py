@@ -24,11 +24,6 @@ def dashboard(request):
     if request.user.is_authenticated:
         entries = Entry.objects.filter(user=request.user).order_by('-date')
 
-        # Filtering
-        category = request.GET.get('category')
-        if category:
-            entries = entries.filter(category=category)
-
         # Pagination
         paginator = Paginator(entries, 5) # 5 entries per page
         page = request.GET.get('page')
@@ -39,8 +34,7 @@ def dashboard(request):
         except EmptyPage:
             entries = paginator.page(paginator.num_pages)
 
-        categories = Entry.objects.filter(user=request.user).values_list('category', flat=True).distinct()
-        context = {'entries': entries, 'category': category, 'categories': categories}
+        context = {'entries': entries}
         return render(request, 'journal/dashboard.html', context)
     else:
         return redirect('login')

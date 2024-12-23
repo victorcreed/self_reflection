@@ -11,7 +11,6 @@ class Entry(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     intention = models.TextField(null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
-    category = models.CharField(max_length=50, blank=True, null=True)
 
 
     def __str__(self):

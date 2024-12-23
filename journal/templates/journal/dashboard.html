@@ -3,23 +3,11 @@
 {% block content %}
     <h1>Dashboard</h1>
 
-    <form method="get">
-        <label for="category">Filter by Category:</label>
-        <select id="category" name="category">
-            <option value="">All</option>
-            {% for cat in categories %}
-                <option value="{{ cat }}" {% if cat == request.GET.get('category') %}selected{% endif %}>{{ cat }}</option>
-            {% endfor %}
-        </select>
-        <button type="submit">Filter</button>
-    </form>
-
     {% for entry in entries %}
         <div class="entry-card">
             <h2>{{ entry.title }}</h2>
             <p class="date">{{ entry.date|date:"F j, Y" }}</p>
-            <p>{{ entry.text|safe }}</p>  <!-- Safe filter for HTML -->
-            <p><strong>Category:</strong> {{ entry.category }}</p>
+            <p>{{ entry.text|safe }}</p>
             <p><strong>Analysis:</strong> {{ entry.intention|safe }}</p>
         </div>
     {% endfor %}
