@@ -1,25 +1,32 @@
 {% extends 'base.html' %}
 {% block title %}Dashboard{% endblock %}
 {% block content %}
-    <h1>Dashboard</h1>
-
-    {% for entry in entries %}
-        <div class="entry-card">
-            <h2>{{ entry.title }}</h2>
-            <p class="date">{{ entry.date|date:"F j, Y" }}</p>
-            <p>{{ entry.text|safe }}</p>
-            <p><strong>Analysis:</strong> {{ entry.intention|safe }}</p>
+    <div class="container">
+        <h1>Dashboard</h1>
+        {% for entry in entries %}
+            <div class="entry-chapter">
+                <h2>Chapter {{ forloop.counter }}: {{ entry.title }}</h2>
+                <h3 class="date">{{ entry.date|date:"F j, Y" }}</h3>
+                <div class="entry-text">
+                    <p>{{ entry.text|safe }}</p>
+                </div>
+                <div class="entry-analysis">
+                    <h3>Analysis:</h3>
+                    <div class="analysis-content">
+                        {{ entry.intention|safe }}
+                    </div>
+                </div>
+            </div>
+            <hr>  <!-- Add a horizontal rule to separate entries -->
+        {% endfor %}
+        <div class="pagination">
+            {% if entries.has_previous %}
+                <a href="?page={{ entries.previous_page_number }}">&lt; Previous</a>
+            {% endif %}
+            Page {{ entries.number }} of {{ entries.paginator.num_pages }}
+            {% if entries.has_next %}
+                <a href="?page={{ entries.next_page_number }}">Next &gt;</a>
+            {% endif %}
         </div>
-    {% endfor %}
-
-    <div class="pagination">
-        {% if entries.has_previous %}
-            <a href="?page={{ entries.previous_page_number }}{% if category %}&category={{ category }}{% endif %}">&lt; Previous</a>
-        {% endif %}
-        Page {{ entries.number }} of {{ entries.paginator.num_pages }}
-        {% if entries.has_next %}
-            <a href="?page={{ entries.next_page_number }}{% if category %}&category={{ category }}{% endif %}">Next &gt;</a>
-        {% endif %}
     </div>
-
 {% endblock %}

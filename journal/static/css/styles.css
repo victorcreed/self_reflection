@@ -91,3 +91,32 @@ form button {
 .entry-card li b {
     font-weight: bold;
 }
+
+.entry-chapter {
+    margin-bottom: 2em; /* Add space between chapters */
+    border: 1px solid #ccc; /* Add a border for better visual separation */
+    padding: 1em; /* Add padding for better readability */
+    border-radius: 5px; /* Add rounded corners */
+}
+
+.entry-chapter h2 {
+    margin-top: 0; /* Remove extra space above chapter title */
+}
+
+.entry-text {
+    margin-bottom: 1em;
+}
+
+.entry-analysis {
+    margin-top: 1em;
+}
+
+.analysis-content {
+    padding-left: 1em; /* Indent analysis content */
+}
+
+hr {
+    margin-top: 2em; /* Add space above horizontal rule */
+    margin-bottom: 2em; /* Add space below horizontal rule */
+    border: 1px solid #ccc; /* Customize the horizontal rule */
+}
