@@ -102,3 +102,5 @@ Werkzeug==3.1.3
 yarl==1.18.3
 zipp==3.21.0
 dj-database-url==2.3.0
+langchain>=0.0.271
+google-generative-language>=0.1.0
