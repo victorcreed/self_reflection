@@ -4,7 +4,7 @@ from .models import Entry
 class EntryUpdateForm(forms.ModelForm):
     class Meta:
         model = Entry
-        fields = ['title', 'text', 'category']
+        fields = ['title', 'text']
 
 class EntryDeleteForm(forms.ModelForm):
     class Meta:
@@ -14,4 +14,4 @@ class EntryDeleteForm(forms.ModelForm):
 class EntryForm(forms.ModelForm):
     class Meta:
         model = Entry
-        fields = ['title', 'text', 'category']
+        fields = ['title', 'text']
