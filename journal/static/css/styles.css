@@ -122,7 +122,8 @@ hr {
 }
 
 .signup-form label {
-    display: block;
+    text-align: left; /* Align labels to the left */
+    display: block; /* Ensure labels are on their own line */
     margin-bottom: 5px;
 }
 
