@@ -2,12 +2,36 @@
 {% block title %}Dashboard{% endblock %}
 {% block content %}
     <h1>Dashboard</h1>
+
+    <form method="get">
+        <label for="category">Filter by Category:</label>
+        <select id="category" name="category">
+            <option value="">All</option>
+            {% for category in categories %}
+                <option value="{{ category }}" {% if category == category %}selected{% endif %}>{{ category }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Filter</button>
+    </form>
+
     {% for entry in entries %}
         <div class="entry-card">
-            <h3>{{ entry.title }}</h3>
-            <p>{{ entry.date|date:"F j, Y" }}</p>
-            <p>{{ entry.text|truncatechars:100 }}</p>
+            <h2>{{ entry.title }}</h2>
+            <p class="date">{{ entry.date|date:"F j, Y" }}</p>
+            <p>{{ entry.text|safe }}</p>  <!-- Safe filter for HTML -->
+            <p><strong>Category:</strong> {{ entry.category }}</p>
             <p><strong>Analysis:</strong> {{ entry.intention|safe }}</p>
         </div>
     {% endfor %}
+
+    <div class="pagination">
+        {% if entries.has_previous %}
+            <a href="?page={{ entries.previous_page_number }}{% if category %}&category={{ category }}{% endif %}">&lt; Previous</a>
+        {% endif %}
+        Page {{ entries.number }} of {{ entries.paginator.num_pages }}
+        {% if entries.has_next %}
+            <a href="?page={{ entries.next_page_number }}{% if category %}&category={{ category }}{% endif %}">Next &gt;</a>
+        {% endif %}
+    </div>
+
 {% endblock %}

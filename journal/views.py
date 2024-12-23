@@ -17,12 +17,33 @@ google_gemini_api_key = os.getenv("GOOGLE_GEMINI_API_KEY")
 def profile(request):
     return render(request, 'journal/profile.html', {'user': request.user, 'entries': Entry.objects.filter(user=request.user)})
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+@login_required
 def dashboard(request):
     if request.user.is_authenticated:
-        entries = Entry.objects.filter(user=request.user).order_by('-date') #Order by date descending
-        return render(request, 'journal/dashboard.html', {'entries': entries})
+        entries = Entry.objects.filter(user=request.user).order_by('-date')
+
+        # Filtering
+        category = request.GET.get('category')
+        if category:
+            entries = entries.filter(category=category)
+
+        # Pagination
+        paginator = Paginator(entries, 5) # 5 entries per page
+        page = request.GET.get('page')
+        try:
+            entries = paginator.page(page)
+        except PageNotAnInteger:
+            entries = paginator.page(1)
+        except EmptyPage:
+            entries = paginator.page(paginator.num_pages)
+
+        categories = Entry.objects.filter(user=request.user).values_list('category', flat=True).distinct()
+        context = {'entries': entries, 'category': category, 'categories': categories}
+        return render(request, 'journal/dashboard.html', context)
     else:
-        return redirect('login') #This assumes you have a login view set up.
+        return redirect('login')
 
 @login_required
 def new_entry(request):
