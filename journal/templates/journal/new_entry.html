@@ -14,12 +14,12 @@
                     <small class="text-muted">Add your emotions in single words what have been through, like today was exciting, today was tiring.</small>
                     <div class="mb-3">
                         <label for="text" class="form-label">Text:</label>
-                        {{ form.text }}
+                        {{ form.text|as_crispy_field }}
                         <div class="invalid-feedback">Please enter some text.</div>
                     </div>
                     <div class="mb-3">
                         <label for="intention" class="form-label">Intention:</label>
-                        {{ form.intention }}
+                        {{ form.intention|as_crispy_field }}
                     </div>
                     <ul class="list-unstyled text-muted">
                         <li>What plans for tomorrow make you upset?</li>

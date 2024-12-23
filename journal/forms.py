@@ -14,4 +14,4 @@ class EntryDeleteForm(forms.ModelForm):
 class EntryForm(forms.ModelForm):
     class Meta:
         model = Entry
-        fields = ['title', 'text',]
+        fields = ['title', 'text', 'intention']
