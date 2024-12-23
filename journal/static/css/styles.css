@@ -152,6 +152,12 @@ hr {
     color: #888 !important;
 }
 
+.signin-form label {
+    text-align: left;
+    display: block;
+    margin-bottom: 5px;
+}
+
 .error {
     color: red;
 }
