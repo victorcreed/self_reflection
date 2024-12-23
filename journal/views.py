@@ -35,23 +35,26 @@ def new_entry(request):
             entry.user = request.user
             entry.save()
 
-            llm = GoogleGenerativeAI(google_api_key=google_gemini_api_key, model="gemini-1.5-flash")
-            prompt_template = """Analyze the following journal entry for elements of accountability, awareness, gratitude, humility, tawakul, and identified areas for improvement.
+            # LangChain integration using PromptTemplate
+            llm = GoogleGemini(google_api_key=os.getenv("GOOGLE_GEMINI_API_KEY"), model="gemini-1.5-flash", temperature=0) #Get API key from environment variable
 
-Title: {title}
-Text: {text}
+            prompt_template = """
+            Analyze the following journal entry for elements of accountability, awareness, gratitude, humility, tawakul, and identified areas for self-improvement.  Provide concise answers.
 
-Accountability (element of justice): Does the entry show accountability?
-Awareness (judgement by Allah): Is there awareness of Allah's judgement?
-Gratitude (ihsan): Does the entry express gratitude to Allah?
-Humility (haqeeqi humility): Does the entry violate haqeeqi humility?
-Tawakul (patience): Does the entry show a lack of patience (and thus lack of tawakul)?
-Improvement: Does the entry identify areas for self-improvement?
-"""
+            Title: {title}
+            Text: {text}
+
+            Accountability (element of justice): Does the entry show accountability?
+            Awareness (judgement by Allah): Is there awareness of Allah's judgement?
+            Gratitude (ihsan): Does the entry express gratitude to Allah?
+            Humility (haqeeqi humility): Does the entry violate haqeeqi humility?
+            Tawakul (patience): Does the entry show a lack of patience (and thus lack of tawakul)?
+            Improvement: Does the entry identify areas for self-improvement?
+            """
             prompt = PromptTemplate(template=prompt_template, input_variables=["title", "text"])
-            analysis = llm(prompt)
+            chain = LLMChain(llm=llm, prompt=prompt)
+            analysis = chain.run(title=entry.title, text=entry.text)
 
-            # Handle the analysis (e.g., save to the database, display to the user)
             print(f"LangChain Analysis: {analysis}") #For now, just print the analysis
 
             return redirect('dashboard')
