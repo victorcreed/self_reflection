@@ -8,7 +8,14 @@
                 <div class="signup-form">
                     <form method="post">
                         {% csrf_token %}
-                        {{ form.as_p }}
+                        <div class="mb-3">
+                            {{ form.username.label_tag }}
+                            {{ form.username }}
+                            <small class="text-muted">{{ form.username.help_text }}</small>
+                        </div>
+                        {{ form.password.as_p }}
+                        {{ form.password_confirmation.as_p }}
+                        {{ form.gender.as_p }}
                         <button type="submit">Sign Up</button>
                     </form>
                 </div>
