@@ -46,7 +46,7 @@ def new_entry(request):
                 Gratitude (ihsan): Does the entry express gratitude to Allah?
                 Humility (haqeeqi humility): Does the entry violate haqeeqi humility?
                 Tawakul (patience): Does the entry show a lack of patience (and thus lack of tawakul)?
-                Improvement: Does the entry identify areas for self-improvement?
+                Improvement (fahm): Does the entry identify areas for self-improvement?
                 """
                 prompt = PromptTemplate(template=prompt_template, input_variables=["title", "text"])
                 analysis = llm(prompt.format(title=entry.title, text=entry.text))
