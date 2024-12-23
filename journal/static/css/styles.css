@@ -70,3 +70,20 @@ form button {
     border-radius: 3px;
     cursor: pointer;
 }
+
+.entry-card p {
+    white-space: pre-wrap; /* Preserve line breaks */
+}
+
+.entry-card strong {
+    font-weight: bold; /* Ensure bold text is bold */
+}
+
+.entry-card ul, .entry-card ol {
+    list-style-type: disc; /* Or square, etc. depending on your needs */
+    margin-left: 20px; /* Indent list items */
+}
+
+.entry-card li {
+    margin-bottom: 5px; /* Add spacing between list items */
+}

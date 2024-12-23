@@ -19,7 +19,7 @@ def profile(request):
 
 def dashboard(request):
     if request.user.is_authenticated:
-        entries = Entry.objects.filter(user=request.user)
+        entries = Entry.objects.filter(user=request.user).order_by('-date') #Order by date descending
         return render(request, 'journal/dashboard.html', {'entries': entries})
     else:
         return redirect('login') #This assumes you have a login view set up.
