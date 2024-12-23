@@ -1,2 +1,69 @@
 .aider*
 .env
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.eggs/
+dist/
+build/
+develop-eggs/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Local configuration files
+.env
+*.local
+local_settings.py
+.env.*
+.venv/
+venv/
+env/
+.virtualenv/
+.tox/
+.ropeproject/
+.idea/
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+
+# Compiled Python files
+*.pyc
+*.pyo
+
+# Python package files
+*.egg-info
+*.dist-info
+
+# Virtual environment files
+.venv
+venv
+env
+
+# IDE files
+.vscode/
+.idea/
+
+# Testing files
+.pytest_cache/
+.coverage/
+nosetests.xml
+
+# Other files
+Thumbs.db
+*.tmp
+*.log
+*.bak
+*.swp
