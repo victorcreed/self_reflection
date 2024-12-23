@@ -36,17 +36,13 @@ def new_entry(request):
             try:
                 llm = GoogleGenerativeAI(google_api_key=google_gemini_api_key, model="gemini-1.5-flash", temperature=0)
                 prompt_template = """
-                Analyze the following journal entry for elements of accountability, awareness, gratitude, humility, tawakul, and identified areas for self-improvement.  Provide concise answers.
+                Analyze the following journal entry for elements of accountability, awareness, gratitude, humility, tawakul, and identified areas for self-improvement.  Provide concise answers in a well-formatted HTML unordered list.
 
                 Title: {title}
                 Text: {text}
 
-                Accountability (element of justice): Does the entry show accountability?
-                Awareness (judgement by Allah): Is there awareness of Allah's judgement?
-                Gratitude (ihsan): Does the entry express gratitude to Allah?
-                Humility (haqeeqi humility): Does the entry violate haqeeqi humility?
-                Tawakul (patience): Does the entry show a lack of patience (and thus lack of tawakul)?
-                Improvement (fahm): Does the entry identify areas for self-improvement?
+                Output should be an HTML <ul> list with <li> elements for each category.  Each <li> element should start with the category name in bold, followed by a colon and the analysis.  Do not use asterisks or other markdown formatting.
+
                 """
                 prompt = PromptTemplate(template=prompt_template, input_variables=["title", "text"])
                 analysis = llm(prompt.format(title=entry.title, text=entry.text))

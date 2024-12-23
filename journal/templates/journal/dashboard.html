@@ -7,7 +7,7 @@
             <h3>{{ entry.title }}</h3>
             <p>{{ entry.date|date:"F j, Y" }}</p>
             <p>{{ entry.text|truncatechars:100 }}</p>
-            <p><strong>Analysis:</strong> {{ entry.intention|safe }}</p>
+            <p><strong>Analysis:</strong> {{ entry.intention }}</p>
         </div>
     {% endfor %}
 {% endblock %}
