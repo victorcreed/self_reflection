@@ -54,6 +54,51 @@ class Entry(db.Model):
 
 
 @app.route('/')
+@app.route('/entries', methods=['POST'])
+def create_entry():
+    """
+    Create a new journal entry.
+
+    HTTP Method: POST
+    URL Path: /entries
+    Request Parameters: JSON body containing entry data
+    Response Data Format: JSON
+    Error Handling: Returns 400 for invalid input, 500 for database errors
+    Input Validation: Checks for required fields (user_id)
+    """
+    data = request.get_json()
+
+    if not 
+        return jsonify({'error': 'Request body must be JSON'}), 400
+
+    if 'user_id' not in 
+        return jsonify({'error': 'user_id is required'}), 400
+
+    try:
+        new_entry = Entry(
+            user_id=data['user_id'],
+            title=data.get('title'),
+            text=data.get('text'),
+            intention=data.get('intention'),
+            gratitude=data.get('gratitude'),
+            patience=data.get('patience'),
+            humility=data.get('humility'),
+            awareness=data.get('awareness'),
+            spiritual_practice=data.get('spiritual_practice'),
+            interactions=data.get('interactions'),
+            personal_improvement=data.get('personal_improvement'),
+            gratitude_blessings=data.get('gratitude_blessings'),
+            accountability=data.get('accountability')
+        )
+        db.session.add(new_entry)
+        db.session.commit()
+        return jsonify(new_entry.to_dict()), 201
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/')
 def hello():
     return "Hello, Flask is working!"
 
