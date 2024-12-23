@@ -36,7 +36,7 @@ def new_entry(request):
             try:
                 llm = GoogleGenerativeAI(google_api_key=google_gemini_api_key, model="gemini-1.5-flash", temperature=0)
                 prompt_template = """
-                Analyze the following journal entry for elements of accountability, awareness (judgement by Allah), gratitude, humility, tawakul, and identified areas for self-improvement. Provide concise answers in a well-formatted HTML unordered list.
+                Analyze the following journal entry for elements of accountability, awareness (judgement by Allah), gratitude, humility, tawakul, and identified areas for self-improvement(fahm), hassad, keena, zulm, takbur, kahali(sloth). Provide concise answers in a well-formatted HTML unordered list.
 
                 Title: {title}
                 Text: {text}
