@@ -1,4 +1,3 @@
-from django.core.management import setup_environ
 import os
 import sys
 import django
