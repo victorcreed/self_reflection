@@ -147,5 +147,5 @@ hr {
 }
 
 .signup-form .mb-3 small {
-    color: #888;
+    color: #888 !important;
 }
