@@ -98,6 +98,32 @@ def create_entry():
         return jsonify({'error': str(e)}), 500
 
 
+@app.route('/entries', methods=['GET'])
+def get_entries():
+    """
+    Retrieve journal entries for a specific user.
+
+    HTTP Method: GET
+    URL Path: /entries
+    Request Headers: user_id (integer)
+    Response Data Format: JSON array of journal entries
+    Error Handling: Returns 401 for unauthorized access, 404 if no entries are found, 500 for database errors
+    Authentication: Requires user_id in request headers
+    """
+    user_id = request.headers.get('user_id')
+
+    if not user_id:
+        return jsonify({'error': 'user_id is required in headers'}), 401
+
+    try:
+        entries = Entry.query.filter_by(user_id=user_id).all()
+        if not entries:
+            return jsonify({'message': 'No entries found for this user'}), 404
+        return jsonify([entry.to_dict() for entry in entries]), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
 @app.route('/')
 def hello():
     return "Hello, Flask is working!"
